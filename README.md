@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# web-synth
+
+This is a web-based synth using the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+
+## Milestones
+
+* [ ] Get some noise: get the app to produce _any_ sound
+* [ ] Implement a simple synth topology (OSC -> AD -> OUT)
+* [ ] Support computer keyboard as musical keyboard
+* [ ] Implement a more complex synth topology (multiple oscillators, EGs, LFOs, etc)
+* [ ] Have elegant UI components to control the synth
+
+## Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
