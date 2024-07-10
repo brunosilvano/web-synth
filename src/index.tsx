@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Synth from './Synth';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const synth = new Synth();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <App synth={synth} />
   </React.StrictMode>
 );
 
