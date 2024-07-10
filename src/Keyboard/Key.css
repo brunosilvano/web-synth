@@ -1,0 +1,20 @@
+.key {
+  background-color: white;
+  border-radius: 10%;
+  border: 1px solid black;
+  height: 50px;
+  margin: 10px;
+  position: relative;
+  user-select: none;
+  width: 50px;
+}
+
+.key.active {
+  background-color: aqua;
+}
+
+.key .note-value {
+  left: 0;
+  position: absolute;
+  top: 0;
+}

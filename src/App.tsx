@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import Synth from './Synth';
+import Keyboard from './Keyboard';
 
 function App({ synth }: { synth: Synth }) {
 
@@ -15,10 +16,15 @@ function App({ synth }: { synth: Synth }) {
     }
   }
 
+  const handleOnKeyDown = (note: number) => {
+    synth.setNote(note);
+  }
+
   return (
     <div>
       <button onClick={() => handleOnClick('resume')}>Start audio</button>
       <button onClick={() => handleOnClick('suspend')}>Pause audio</button>
+      <Keyboard onKeyDown={handleOnKeyDown} />
     </div>
   );
 }
