@@ -3,6 +3,10 @@ class Synth {
 
   osc: OscillatorNode;
 
+  setNote (note: number) {
+    this.osc.frequency.setValueAtTime(Math.pow(2, (note - 69) / 12) * 440, this.audioCtx.currentTime);
+  }
+
   constructor() {
     this.audioCtx = new AudioContext();
 
