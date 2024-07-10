@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./Key.css"
 
-function Key({ midiNote }: { midiNote: number }) {
+function Key({ midiNote, onKeyDown }: { midiNote: number, onKeyDown: (note: number) => void }) {
 
   const [isActive, setIsActive] = useState(false);
 
   const handleOnMouseDown = () => {
     setIsActive(true);
+    onKeyDown(midiNote);
   };
 
   const handleOnMouseUp = () => {

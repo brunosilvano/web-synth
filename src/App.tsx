@@ -16,11 +16,15 @@ function App({ synth }: { synth: Synth }) {
     }
   }
 
+  const handleOnKeyDown = (note: number) => {
+    synth.setNote(note);
+  }
+
   return (
     <div>
       <button onClick={() => handleOnClick('resume')}>Start audio</button>
       <button onClick={() => handleOnClick('suspend')}>Pause audio</button>
-      <Keyboard />
+      <Keyboard onKeyDown={handleOnKeyDown} />
     </div>
   );
 }
