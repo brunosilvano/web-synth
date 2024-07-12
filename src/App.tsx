@@ -18,6 +18,7 @@ function App({ synth }: { synth: Synth }) {
 
   const handleOnKeyDown = (note: number) => {
     synth.setNote(note);
+    synth.envelope.trigger();
   }
 
   return (
