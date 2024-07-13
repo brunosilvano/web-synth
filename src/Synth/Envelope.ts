@@ -1,8 +1,8 @@
 class Envelope {
   private envelope: GainNode;
 
-  attackTime = 0.1;
-  decayTime = 0.1;
+  private _attackTime = 0.1;
+  private _decayTime = 0.1;
 
   constructor(private audioContext: AudioContext) {
     this.envelope = this.audioContext.createGain();
@@ -23,6 +23,33 @@ class Envelope {
 
   destination() {
     return this.envelope;
+  }
+
+  // Accessors
+  get attackTime() {
+    return this._attackTime;
+  }
+
+  set attackTime(value: number) {
+    if (value < 0) {
+      console.error("Envelop attackTime can't be a negative value");
+      this._attackTime = 0;
+    } else {
+      this._attackTime = value;
+    }
+  }
+
+  get decayTime() {
+    return this._decayTime;
+  }
+
+  set decayTime(value: number) {
+    if (value < 0) {
+      console.error("Envelop decayTime can't be a negative value");
+      this._decayTime = 0;
+    } else {
+      this._decayTime = value;
+    }
   }
 }
 
