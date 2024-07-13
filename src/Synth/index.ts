@@ -7,11 +7,6 @@ class Synth {
   envelope: Envelope;
   oscillator: Oscillator;
 
-  setNote (note: number) {
-    const frequency = Math.pow(2, (note - 69) / 12) * 440;
-    this.oscillator.setFrequency(frequency);
-  }
-
   constructor() {
     this.audioContext = new AudioContext();
 
@@ -22,6 +17,11 @@ class Synth {
     // Routing
     this.oscillator.connect(this.envelope.destination());
     this.envelope.connect(this.audioContext.destination);
+  }
+
+  setNote (note: number) {
+    const frequency = Math.pow(2, (note - 69) / 12) * 440;
+    this.oscillator.setFrequency(frequency);
   }
 }
 
