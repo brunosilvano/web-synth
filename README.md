@@ -4,8 +4,8 @@ This is a web-based synth using the [Web Audio API](https://developer.mozilla.or
 
 ## Milestones
 
-* ✅ Get some noise: get the app to produce _any_ sound
-* [ ] Implement a simple synth topology (OSC -> AD -> OUT)
+* [x] Get some noise: get the app to produce _any_ sound
+* [x] Implement a simple synth topology (OSC -> AD -> OUT)
 * [ ] Support computer keyboard as musical keyboard
 * [ ] Implement a more complex synth topology (multiple oscillators, EGs, LFOs, etc)
 * [ ] Have elegant UI components to control the synth
