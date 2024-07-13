@@ -2,7 +2,7 @@ import Envelope from "./Envelope";
 import Oscillator from "./Oscillator";
 
 class Synth {
-  audioCtx: AudioContext;
+  audioContext: AudioContext;
 
   envelope: Envelope;
   oscillator: Oscillator;
@@ -13,15 +13,15 @@ class Synth {
   }
 
   constructor() {
-    this.audioCtx = new AudioContext();
+    this.audioContext = new AudioContext();
 
     // Initialize nodes
-    this.envelope = new Envelope(this.audioCtx);
-    this.oscillator = new Oscillator(this.audioCtx);
+    this.envelope = new Envelope(this.audioContext);
+    this.oscillator = new Oscillator(this.audioContext);
 
     // Routing
     this.oscillator.connect(this.envelope.destination());
-    this.envelope.connect(this.audioCtx.destination);
+    this.envelope.connect(this.audioContext.destination);
   }
 }
 
