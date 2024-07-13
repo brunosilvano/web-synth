@@ -19,9 +19,10 @@ class Synth {
     this.envelope.connect(this.audioContext.destination);
   }
 
-  setNote (note: number) {
+  setNote(note: number) {
     const frequency = Math.pow(2, (note - 69) / 12) * 440;
     this.oscillator.setFrequency(frequency);
+    this.oscillator.start();
   }
 }
 

@@ -16,7 +16,6 @@ class Oscillator {
 
   setFrequency(frequency: number) {
     this.oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
-    this.start();
   }
 
   start() {
