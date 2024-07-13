@@ -19,6 +19,14 @@ class Synth {
     this.envelope.connect(this._audioContext.destination);
   }
 
+  setAttack(value: number) {
+    this.envelope.attackTime = value;
+  }
+
+  setDecay(value: number) {
+    this.envelope.decayTime = value;
+  }
+
   setNote(note: number) {
     const frequency = Math.pow(2, (note - 69) / 12) * 440;
     this.oscillator.setFrequency(frequency);
