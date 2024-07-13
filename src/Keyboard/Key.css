@@ -9,7 +9,7 @@
   width: 50px;
 }
 
-.key.active {
+.key:active {
   background-color: aqua;
 }
 
