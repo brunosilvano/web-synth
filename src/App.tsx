@@ -5,12 +5,12 @@ import Keyboard from './Keyboard';
 
 function App({ synth }: { synth: Synth }) {
 
-  const handleOnClick = (value: 'suspend' | 'resume') => {
+  const handleOnClick = (value: 'suspend' | 'start') => {
     switch (value) {
       case 'suspend':
         synth.stop();
         break;
-      case 'resume':
+      case 'start':
         synth.start();
         break;
     }
@@ -23,7 +23,7 @@ function App({ synth }: { synth: Synth }) {
 
   return (
     <div>
-      <button onClick={() => handleOnClick('resume')}>Start audio</button>
+      <button onClick={() => handleOnClick('start')}>Start audio</button>
       <button onClick={() => handleOnClick('suspend')}>Pause audio</button>
       <Keyboard onKeyDown={handleOnKeyDown} />
     </div>
