@@ -8,10 +8,10 @@ function App({ synth }: { synth: Synth }) {
   const handleOnClick = (value: 'suspend' | 'resume') => {
     switch (value) {
       case 'suspend':
-        synth.audioContext.suspend();
+        synth.stop();
         break;
       case 'resume':
-        synth.audioContext.resume();
+        synth.start();
         break;
     }
   }
