@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Key.css"
 
-function Key({ midiNote, onKeyDown }: { midiNote: number, onKeyDown: (note: number) => void }) {
+interface KeyProps {
+  midiNote: number;
+  onKeyDown: (note: number) => void;
+}
 
-  const [isActive, setIsActive] = useState(false);
-
+const Key = ({ midiNote, onKeyDown }: KeyProps) => {
   const handleOnMouseDown = () => {
-    setIsActive(true);
     onKeyDown(midiNote);
   };
 
-  const handleOnMouseUp = () => {
-    setIsActive(false);
-  };
-
   return (
-    <div className={`key ${isActive ? 'active' : ''}`} onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp}>
+    <div className="key" onMouseDown={handleOnMouseDown}>
       <p className="note-value">{midiNote}</p>
     </div>
   );
