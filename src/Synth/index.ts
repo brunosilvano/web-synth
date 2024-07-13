@@ -15,13 +15,13 @@ class Synth {
   constructor() {
     this.audioCtx = new AudioContext();
 
-    // create an envelope
+    // Initialize nodes
     this.envelope = new Envelope(this.audioCtx);
-    this.envelope.connect(this.audioCtx.destination);
-
-    // create an oscillator
     this.oscillator = new Oscillator(this.audioCtx);
+
+    // Routing
     this.oscillator.connect(this.envelope.destination());
+    this.envelope.connect(this.audioCtx.destination);
   }
 }
 
