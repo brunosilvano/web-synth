@@ -1,13 +1,15 @@
 import Envelope from "./Envelope";
+import Oscillator from "./Oscillator";
 
 class Synth {
   audioCtx: AudioContext;
 
   envelope: Envelope;
-  oscillator: OscillatorNode;
+  oscillator: Oscillator;
 
   setNote (note: number) {
-    this.oscillator.frequency.setValueAtTime(Math.pow(2, (note - 69) / 12) * 440, this.audioCtx.currentTime);
+    const frequency = Math.pow(2, (note - 69) / 12) * 440;
+    this.oscillator.setFrequency(frequency);
   }
 
   constructor() {
@@ -17,11 +19,9 @@ class Synth {
     this.envelope = new Envelope(this.audioCtx);
     this.envelope.connect(this.audioCtx.destination);
 
-    // create an osc to get some sound working
-    this.oscillator = this.audioCtx.createOscillator();
-    this.oscillator.frequency.setValueAtTime(440, this.audioCtx.currentTime); // set osc frequency to 440 Hz
+    // create an oscillator
+    this.oscillator = new Oscillator(this.audioCtx);
     this.oscillator.connect(this.envelope.destination());
-    this.oscillator.start();
   }
 }
 
