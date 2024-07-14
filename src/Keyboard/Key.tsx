@@ -1,9 +1,10 @@
 import React from "react";
 import "./Key.css"
+import { OnKeyDown } from "../App";
 
 interface KeyProps {
   midiNote: number;
-  onKeyDown: (note: number) => void;
+  onKeyDown: OnKeyDown;
 }
 
 const Key = ({ midiNote, onKeyDown }: KeyProps) => {
