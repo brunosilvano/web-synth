@@ -3,7 +3,13 @@ import './App.css';
 import Synth from './Synth';
 import Keyboard from './Keyboard';
 
-function App({ synth }: { synth: Synth }) {
+export type OnKeyDown =  (note: number) => void;
+
+interface AppProps {
+  synth: Synth;
+}
+
+const App = ({ synth }: AppProps) => {
   const [attack, setAttack] = useState(synth.envelope.attackTime);
   const [decay, setDecay] = useState(synth.envelope.decayTime);
 
@@ -23,7 +29,7 @@ function App({ synth }: { synth: Synth }) {
     }
   }
 
-  const handleOnKeyDown = (note: number) => {
+  const handleOnKeyDown: OnKeyDown = (note) => {
     synth.setNote(note);
     synth.envelope.trigger();
   }
