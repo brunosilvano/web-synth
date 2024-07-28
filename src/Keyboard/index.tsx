@@ -26,6 +26,7 @@ const Keyboard = ({ onKeyDown }: KeyboardProps) => {
     if (ev.repeat) return;
     if (isInKeys(key)) {
       const note = getMidiValue(keys.indexOf(key), octave);
+      if (note < 0 && 127 < note) return;
       onKeyDown(note);
     } else if (key === 'x' && octave < 8) {
       setOctave(currentOctave => ++currentOctave);
@@ -44,7 +45,12 @@ const Keyboard = ({ onKeyDown }: KeyboardProps) => {
 
   return (
     <div style={{ display: 'flex' }}>
-      {keys.map((key, index) => <Key key={getMidiValue(index, octave)} midiNote={getMidiValue(index, octave)} onKeyDown={onKeyDown} />)}
+      {keys.map((key, index) => {
+        const midiNote = getMidiValue(index, octave);
+        if (midiNote > 127) return null;
+        return <Key key={midiNote} midiNote={midiNote} onKeyDown={onKeyDown} />;
+      })
+      }
     </div>
   );
 }
