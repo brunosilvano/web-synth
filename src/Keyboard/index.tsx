@@ -4,37 +4,35 @@ import { OnKeyDown } from "../App";
 
 const keys = [
   'a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k', 'o', 'l'
-];
+] as const;
+
+const isInKeys = (x: string): x is typeof keys[number] => {
+  return keys.includes(x as typeof keys[number]);
+}
+
+const getMidiValue = (baseNote: number, octave: number) => {
+  return baseNote + (octave + 2) * 12
+}
 
 interface KeyboardProps {
   onKeyDown: OnKeyDown;
 }
 
 const Keyboard = ({ onKeyDown }: KeyboardProps) => {
-  const [octave, setOctave] = useState(0)
-  const [midiNotes, setMidiNotes] = useState(Array<{key: string; value: number;}>())
-
-  useEffect(() => {
-    const notes = keys.map((key, index) => ({
-      key,
-      value: 60 + (octave * 12) + index
-    }));
-
-    setMidiNotes(notes);
-  }, [octave]);
+  const [octave, setOctave] = useState(3)
 
   const handleOnKeyDown = useCallback((ev: KeyboardEvent) => {
     const key = ev.key;
     if (ev.repeat) return;
-    if (keys.includes(key)) {
-      const note = midiNotes.find(midiNote => midiNote.key === ev.key)?.value ?? 60;
+    if (isInKeys(key)) {
+      const note = getMidiValue(keys.indexOf(key), octave);
       onKeyDown(note);
     } else if (key === 'x') {
       setOctave(currentOctave => ++currentOctave)
     } else if (key === 'z') {
       setOctave(currentOctave => --currentOctave)
     }
-  }, [midiNotes, onKeyDown]);
+  }, [octave, onKeyDown]);
 
   useEffect(() => {
     document.removeEventListener('keydown', handleOnKeyDown);
@@ -46,7 +44,7 @@ const Keyboard = ({ onKeyDown }: KeyboardProps) => {
 
   return (
     <div style={{ display: 'flex' }}>
-      {midiNotes.map(({ value })=> <Key midiNote={value} onKeyDown={onKeyDown} />)}
+      {keys.map((key, index) => <Key key={getMidiValue(index, octave)} midiNote={getMidiValue(index, octave)} onKeyDown={onKeyDown} />)}
     </div>
   );
 }
