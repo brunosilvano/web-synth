@@ -8,18 +8,18 @@ const keys = [
 
 const isInKeys = (x: string): x is typeof keys[number] => {
   return keys.includes(x as typeof keys[number]);
-}
+};
 
 const getMidiValue = (baseNote: number, octave: number) => {
-  return baseNote + (octave + 2) * 12
-}
+  return baseNote + (octave + 2) * 12;
+};
 
 interface KeyboardProps {
   onKeyDown: OnKeyDown;
 }
 
 const Keyboard = ({ onKeyDown }: KeyboardProps) => {
-  const [octave, setOctave] = useState(3)
+  const [octave, setOctave] = useState(3);
 
   const handleOnKeyDown = useCallback((ev: KeyboardEvent) => {
     const key = ev.key;
@@ -28,9 +28,9 @@ const Keyboard = ({ onKeyDown }: KeyboardProps) => {
       const note = getMidiValue(keys.indexOf(key), octave);
       onKeyDown(note);
     } else if (key === 'x' && octave < 8) {
-      setOctave(currentOctave => ++currentOctave)
+      setOctave(currentOctave => ++currentOctave);
     } else if (key === 'z' && octave > -2) {
-      setOctave(currentOctave => --currentOctave)
+      setOctave(currentOctave => --currentOctave);
     }
   }, [octave, onKeyDown]);
 
