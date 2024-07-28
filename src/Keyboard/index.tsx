@@ -27,9 +27,9 @@ const Keyboard = ({ onKeyDown }: KeyboardProps) => {
     if (isInKeys(key)) {
       const note = getMidiValue(keys.indexOf(key), octave);
       onKeyDown(note);
-    } else if (key === 'x') {
+    } else if (key === 'x' && octave < 8) {
       setOctave(currentOctave => ++currentOctave)
-    } else if (key === 'z') {
+    } else if (key === 'z' && octave > -2) {
       setOctave(currentOctave => --currentOctave)
     }
   }, [octave, onKeyDown]);
